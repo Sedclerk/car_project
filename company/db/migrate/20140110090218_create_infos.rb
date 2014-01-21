@@ -15,4 +15,3 @@ class CreateInfos < ActiveRecord::Migration
     end
   end
 end
-
