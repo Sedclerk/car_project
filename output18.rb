@@ -185,14 +185,49 @@ Rubis:)
 
 PART 2
 
+7. Create another migration that changes description to require the field to not be nil.
+hint: possible google search “rails migration add not null constraint”
+
+
+Rubis:) rake db:migrate
+==  ChangeColumnNull: migrating ===============================================
+-- change_column_null(:cars, :description, false)
+-> 0.0195s
+==  ChangeColumnNull: migrated (0.0196s) ======================================
+
+==  ChangeColumn: migrating ===================================================
+-- change_column(:cars, :description, :text, {:null=>false})
+-> 0.0238s
+==  ChangeColumn: migrated (0.0239s) ==========================================
 
 
 
+
+8. Modify your rake file and try to save a car without a description. What error is thrown? How is this error different from a validation error?
 
     
-    
-    '
-    
+changed the rake file called : new_car.rake on lib/tasks
+
+namespace :add do
+    desc "Create a new car"
+    task :changed_car => :environment do
+        Car.create(make: "Renault", model: "4l")
+        puts "Succesfully created a new car"
+    end
+end
+
+and from the terminal as i call that rake file
+
+
+'Rubis:) rake add:changed_car
+rake aborted!
+Mysql2::Error: Field 'description' doesn't have a default value: INSERT INTO `cars` (`created_at`, `make`, `model`, `updated_at`) VALUES ('2014-01-22 12:46:26', 'Renault', '4l', '2014-01-22 12:46:26')
+/Users/Sedclerk/Desktop/test2014/company/lib/tasks/new_car.rake:14:in `block (2 levels) in <top (required)>'
+Tasks: TOP => add:changed_car
+(See full trace by running task with --trace)
+
+we can see that here is a raise errors from mysql validation. and the previous errors was from a model validation. 
+
 
 
 

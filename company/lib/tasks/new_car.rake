@@ -10,8 +10,8 @@
 #end
 namespace :add do
 desc "Create a new car"
-task :new_car => :environment do
-Car.create(make: "Limo", model: "GTX", description: "4x4")
+task :changed_car => :environment do
+Car.create(make: "Renault", model: "4l")
 puts "Succesfully created a new car"
 end
 end
