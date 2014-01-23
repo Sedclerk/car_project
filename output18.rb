@@ -312,6 +312,184 @@ Time: 15mn
 
 Thanks
 
+    
+    PROJECT 19
+    
+
+    Project 19
+    Part 1:
+    1. Create a database migration that adds two columns to the “cars” table. The columns are “year and price”. Year should be an integer and price should be a decimal.
+    
+    Last login: Thu Jan 23 11:49:36 on ttys001
+    Rubis:) cd /Users/Sedclerk/Desktop/test2014/company
+    Rubis:) cd /Users/Sedclerk/Desktop/test2014/19/company
+    Rubis:) rake db:migrate
+    ==  AddColumn: migrating ======================================================
+    -- add_column(:cars, :year, :integer)
+    -> 0.0352s
+    -- add_column(:cars, :price, :decimal, {:precision=>8, :scale=>2})
+    -> 0.0314s
+    ==  AddColumn: migrated (0.0668s) =============================================
+    
+    Rubis:)
+    
+    and here is what i added to the migration file :
+
+class AddColumn < ActiveRecord::Migration
+def change
+  	add_column :cars, :year, :integer
+  	add_column :cars, :price, :decimal, precision: 8, scale: 2
+end
+end
+
+2. Create a rake task and try the following command: Car.create(year: ‘tester’, price: ‘blah’).i created a rake file called : 19.rake
+
+namespace :add do
+    desc "Create year and price data"
+    task :nine_car => :environment do
+        Car.create(year: ‘tester’, price: ‘blah’)
+        puts "Succesfully worked"
+    end
+end
+
+What happens? ( rake aborted here is the output from terminal as i run rake add:nine_car)
+
+Rubis:) rake add:nine_car
+rake aborted!
+rake aborted!
+invalid byte sequence in US-ASCII
+
+(See full trace by running task with --trace)
+Rubis:)
+
+
+Does it create a car?
+
+i creates nothing as we can see here from database :
+
+mysql> select * from cars;
++----+-------------+------------+---------------------+---------------------+-------------+------+-------+
+| id | make        | model      | created_at          | updated_at          | description | year | price |
++----+-------------+------------+---------------------+---------------------+-------------+------+-------+
+|  1 | BMW         | E30        | 2014-01-15 07:39:13 | 2014-01-15 07:45:08 | Voila       | NULL |  NULL |
+|  2 | Ford        | Aveo       | 2014-01-15 07:45:57 | 2014-01-21 12:44:56 | Cool        | NULL |  NULL |
+|  4 | Renault     | Express    | 2014-01-15 07:49:59 | 2014-01-15 07:50:36 | Boom        | NULL |  NULL |
+|  5 | Toyota      | TruenoAE86 | 2014-01-20 16:36:11 | 2014-01-20 16:36:11 | Baam        | NULL |  NULL |
+|  6 | Daewoo      | 4WD        | 2014-01-21 10:16:39 | 2014-01-21 10:16:39 | 4x4         | NULL |  NULL |
+|  8 | Limo        | GTX        | 2014-01-21 10:35:33 | 2014-01-21 10:35:33 | 4x4         | NULL |  NULL |
+|  9 | Lexus       | GTI        | 2014-01-21 12:36:52 | 2014-01-21 12:36:52 | Awesome     | NULL |  NULL |
+| 10 | Lexus 2     | GTD        | 2014-01-21 12:40:20 | 2014-01-21 12:40:20 | Awesome     | NULL |  NULL |
+| 11 | Lambourgini | Airborn    | 2014-01-21 12:40:20 | 2014-01-21 12:40:20 | Super       | NULL |  NULL |
+| 12 | Audi        | GT         | 2014-01-21 17:09:25 | 2014-01-21 17:09:25 | Speed       | NULL |  NULL |
+| 13 | Audi        | GT         | 2014-01-21 18:28:54 | 2014-01-21 18:28:54 | mlay        | NULL |  NULL |
++----+-------------+------------+---------------------+---------------------+-------------+------+-------+
+11 rows in set (0.00 sec)
+
+mysql>
+
+there should be a 14th id for the latest one we just created .
+
+
+
+BY THE WAY, I WAS WRONG FROM THE ABOVE I MENTIONED
+
+FROM PART TWO AS I CREATED THOSE MIGRATION, I REALIZE THAT WAS NOT NORMAL. SO BECAUSE OF THAT THE RAKE ABORTED TWICE WAS THERE FOR A BIG REASON. AS I WORKED ON IT , I FOUND OUT THE SOLUTION. WHICH IS ADDING # encoding: utf-8 FROM THE RAKE I JUST CREATED AND BY DOING SO I DIDN T GET THAT DOUBLE RAKE ABORTED ANYMORRE BUT INSTEAD , I HAD THIS :
+
+Rubis:) rake add:nine_car
+rake aborted!
+undefined local variable or method `‘tester’' for main:Object
+/Users/Sedclerk/Desktop/test2014/19/company/lib/tasks/19.rake:5:in `block (2 levels) in <top (required)>'
+Tasks: TOP => add:nine_car
+(See full trace by running task with --trace)
+
+
+HERE I REALIZED THAT ANOTHER MISTAKE I VE MADE WAS THAT I PUT SINGLE QUOTE INSTEAD OF DOUBLE QUOTES ON THE VALUE OF YEAR COLUMNS AND PRICE. SO I FIXED THAT
+
+Rubis:) rake add:nine_car
+[deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
+Succesfully worked
+Rubis:)
+
+IT SHOWS THAT THE VALIDATION HAD WORKED.
+
+
+If so, what gets stored in the year and price?
+
+from the last id we were trying to create , i didn t go thru so with the previous id , there just "NULL" . iT happened because first when we created make and model, we ve set validations of presence and on the description columns we set a null constraint . and lastly we still added in the year column isn t an integer and the price wasn t a decimal so that is why we ve got a double rake aborted.in
+
+
+3. Add validations to cars to require that year and price be a number.
+
+i added a requirement to the model car, here is what i added ( number with allow null)
+
+validates :year, :price , :numericality => true, :allow_nil => true
+
+
+Part 2:
+1. Create another migration that adds additional columns to the cars table. Including
+
+from the terminal :
+
+Rubis:) rails g migration AddColumnsToCars transmission:string  vin:string mileage:integer exterior_color:string interior_color:string body_type:string doors:integer
+invoke  active_record
+create    db/migrate/20140123115335_add_columns_to_cars.rb
+Rubis:)
+
+and here is from the migrated file :
+
+class AddColumnsToCars < ActiveRecord::Migration
+    def change
+        add_column :cars, :transmission, :string
+        add_column :cars, :vin, :string
+        add_column :cars, :mileage, :integer
+        add_column :cars, :exterior_color, :string
+        add_column :cars, :interior_color, :string
+        add_column :cars, :body_type, :string
+        add_column :cars, :doors, :integer
+    end
+end
+
+and rake db:migrate succesfully :
+
+Rubis:) rake db:migrate
+==  AddColumnsToCars: migrating ===============================================
+-- add_column(:cars, :transmission, :string)
+-> 0.0314s
+-- add_column(:cars, :vin, :string)
+-> 0.0283s
+-- add_column(:cars, :mileage, :integer)
+-> 0.0161s
+-- add_column(:cars, :exterior_color, :string)
+-> 0.0169s
+-- add_column(:cars, :interior_color, :string)
+-> 0.0245s
+-- add_column(:cars, :body_type, :string)
+-> 0.0175s
+-- add_column(:cars, :doors, :integer)
+-> 0.0171s
+==  AddColumnsToCars: migrated (0.1523s) ======================================
+
+Part 3:
+Add validations to the car model. These validations should include:
+
+1. transmission should only allow ‘Manual’ or ‘Automatic’
+validates :transmission, :presence => true, :if => " Manual||Automatic? " end
+
+2. mileage should be a number and should be greater than or equal to zero
+
+validates :mileage, :numericality => {:greater_than => 0}
+
+
+3. body_type can only be “Convertible”, “Coupe”, “Hatchback”, “Sedan”, “SUV”,
+“Truck”, “Minivan”, “Van”, “Wagon”
+
+validates_inclusion_of :field, :in => [Convertible, Coupe,Hatchback , Sedan, SUV, Truck, Minivan, Van, Wagon], :allow_nil => true, :presence => true
+
+
+4. Doors must be greater than or equal to zero
+
+
+validates_numericality_of :Doors, :presence => true, :only_integer => true, :greater_than_or_equal_to => 0
 
 
 
