@@ -19,10 +19,10 @@
      <th>Make</th>&nbsp;&nbsp;&nbsp;
 
      <th>Model</th>&nbsp;&nbsp;&nbsp;
-
+    </tr>
      
 
-     <% Car.all.each do |car| %>
+     <% Car.all.each do |car|%>
      <tr>
         <td width="40%"><%= car.make %></td>&nbsp;&nbsp;&nbsp;
         <td width="20%"><%= car.model %></td>&nbsp;&nbsp;&nbsp;
@@ -30,47 +30,10 @@
     <% end %>
   </table>
 
-<table border="1", cellpadding="15", align="center">
-    <tr>
-     <th>car_name</th>&nbsp;&nbsp;&nbsp;
 
-     <th>distance</th>&nbsp;&nbsp;&nbsp;
-
-     <th>type</th>&nbsp;&nbsp;&nbsp;
-
-     <th>colour</th>&nbsp;&nbsp;&nbsp;
-
-     <th>steering</th>&nbsp;&nbsp;&nbsp;
-
-     <th>fuel</th>&nbsp;&nbsp;&nbsp;
-
-     <th>seats</th>&nbsp;&nbsp;&nbsp;
-
-     <th>year</th>&nbsp;&nbsp;&nbsp;
-
-     <th>price</th>&nbsp;&nbsp;&nbsp;
-    </tr>
-
-     <% Info.all.each do |info| %>
-     <tr>
-        <td width="40%"><%= info.car_name %></td>&nbsp;&nbsp;&nbsp;
-        <td width="20%"><%= info.distance %></td>&nbsp;&nbsp;&nbsp;
-        <td width="60%"><%= info.type %></td>&nbsp;&nbsp;&nbsp;
-        <td width= "20%"><%= info.colour %></td>&nbsp;&nbsp;&nbsp;
-        <td width="60%"><%= info.steering %></td>&nbsp;&nbsp;&nbsp;
-        <td width="60%"><%= info.fuel %></td>&nbsp;&nbsp;&nbsp;
-        <td width="60%"><%= info.seats %></td>&nbsp;&nbsp;&nbsp;
-        <td width="60%"><%= info.year %></td>&nbsp;&nbsp;&nbsp;
-        <td width="60%"><%= info.price %></td>&nbsp;&nbsp;&nbsp;
-      </tr>
-    <% end %>
-  </table>
-     
-<%= link_to 'Add Car here', add_car_path(@add_car) %>
-     
 </p>
 </div>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <div class="-form" style="float:center"><br style="clear:center" /><br style="clear:center" /> 
 <h3>Are you interested? please submit a form by cliking this link below</h3></b><br/></b><br/>
 <font size="5pt"><b><%= link_to 'Contact_us here', new_message_path %></font><br/><br/><br/><br/><br/><br/>
