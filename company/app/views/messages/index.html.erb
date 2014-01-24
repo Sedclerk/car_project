@@ -19,16 +19,23 @@
      <th>Make</th>&nbsp;&nbsp;&nbsp;
 
      <th>Model</th>&nbsp;&nbsp;&nbsp;
+
+      <th>Pictures</th>     
     </tr>
      
 
      <% Car.all.each do |car|%>
-     <tr>
+     <% Picture.all.each do |picture|%>
+      <tr>
         <td width="40%"><%= car.make %></td>&nbsp;&nbsp;&nbsp;
         <td width="20%"><%= car.model %></td>&nbsp;&nbsp;&nbsp;
+        <td width="20%"><%= picture.description %></td>&nbsp;&nbsp;&nbsp;
       </tr>
     <% end %>
+    <% end %>
+
   </table>
+
 
 
 </p>
