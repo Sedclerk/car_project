@@ -1,7 +1,7 @@
 class Car < ActiveRecord::Base
 
    has_many :pictures   # A Car has many Pictures 
-   has_one :addresses
+   has_one :address
 #validates :make, :model ,:presence => {:message => "empty value found, it can't be blank"}
 
 #validates :year, :price , :numericality => true, :allow_nil => true

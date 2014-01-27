@@ -10,7 +10,7 @@ a=Car.find(14)
 	puts "Succesfully found a car number 14"
 	puts a
 	
-
+puts Car.Address.address_1
 puts "Succesfully created a new car"
 end
 end
