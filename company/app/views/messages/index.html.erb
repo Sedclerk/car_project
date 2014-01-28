@@ -16,35 +16,20 @@
 
 <table border="1", cellpadding="15", align="center">
     <tr>
-     <th>Make</th>&nbsp;&nbsp;&nbsp;
-
-     <th>Model</th>&nbsp;&nbsp;&nbsp;
-
       <th>Pictures</th>     
     </tr>
-     
 
-     <% Car.all.each do |car|%>
-     <% Picture.all.each do |picture|%>
+     <% Car.first.pictures.each do |pic|%>
       <tr>
-        <td width="40%"><%= car.make %></td>&nbsp;&nbsp;&nbsp;
-        <td width="20%"><%= car.model %></td>&nbsp;&nbsp;&nbsp;
-        <td width="20%"><%= picture.description %></td>&nbsp;&nbsp;&nbsp;
+        <td width="40%"><%= pic.description %></td>&nbsp;&nbsp;&nbsp;
       </tr>
-    <% end %>
-    <% end %>
-
-<!Cars.each do |car|>
-    <!car.pictures.each{|picture| puts picture.description}>
- <!end>
+     <% end %>
 
   </table>
 
-
-
 </p>
 </div>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
 <div class="-form" style="float:center"><br style="clear:center" /><br style="clear:center" /> 
 <h3>Are you interested? please submit a form by cliking this link below</h3></b><br/></b><br/>
 <font size="5pt"><b><%= link_to 'Contact_us here', new_message_path %></font><br/><br/><br/><br/><br/><br/>
