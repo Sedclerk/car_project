@@ -9,7 +9,7 @@ create  Rakefile
 create  config.ru
 create  .gitignore
 create  Gemfile
-create  app
+create  app 
 create  app/assets/javascripts/application.js
 create  app/assets/stylesheets/application.css
 create  app/controllers/application_controller.rb
