@@ -13,8 +13,8 @@ development:
   encoding: utf8
   database: demo_app_development
   pool: 5
-  username: root
-  password:
+  username: demo_app
+  password: Sedclerk13
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
