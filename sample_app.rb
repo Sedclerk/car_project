@@ -317,3 +317,100 @@ create mode 100644 vendor/assets/stylesheets/.keep
 Rubis:) rails generate rspec:install
 Could not find generator rspec:install.
 
+Last login: Tue Feb  4 07:24:02 on console
+Rubis:) cd /Users/Sedclerk/Documents/car_project/sample_app
+Rubis:) rails generate rspec:install
+Could not find generator rspec:install.
+Rubis:) cd ..
+Rubis:) rails generate rspec:install
+Usage:
+rails new APP_PATH [options]
+
+Options:
+-r, [--ruby=PATH]              # Path to the Ruby binary of your choice
+# Default: /Users/Sedclerk/.rbenv/versions/1.9.3-p392/bin/ruby
+-m, [--template=TEMPLATE]      # Path to some application template (can be a filesystem path or URL)
+[--skip-gemfile]           # Don't create a Gemfile
+-B, [--skip-bundle]            # Don't run bundle install
+-G, [--skip-git]               # Skip .gitignore file
+[--skip-keeps]             # Skip source control .keep files
+-O, [--skip-active-record]     # Skip Active Record files
+-S, [--skip-sprockets]         # Skip Sprockets files
+-d, [--database=DATABASE]      # Preconfigure for selected database (options: mysql/oracle/postgresql/sqlite3/frontbase/ibm_db/sqlserver/jdbcmysql/jdbcsqlite3/jdbcpostgresql/jdbc)
+# Default: sqlite3
+-j, [--javascript=JAVASCRIPT]  # Preconfigure for selected JavaScript library
+# Default: jquery
+-J, [--skip-javascript]        # Skip JavaScript files
+[--dev]                    # Setup the application with Gemfile pointing to your Rails checkout
+[--edge]                   # Setup the application with Gemfile pointing to Rails repository
+-T, [--skip-test-unit]         # Skip Test::Unit files
+[--rc=RC]                  # Path to file containing extra configuration options for rails command
+[--no-rc]                  # Skip loading of extra configuration options from .railsrc file
+
+Runtime options:
+-f, [--force]    # Overwrite files that already exist
+-p, [--pretend]  # Run but do not make any changes
+-q, [--quiet]    # Suppress status output
+-s, [--skip]     # Skip files that already exist
+
+Rails options:
+-h, [--help]     # Show this help message and quit
+-v, [--version]  # Show Rails version number and quit
+
+Description:
+The 'rails new' command creates a new Rails application with a default
+directory structure and configuration at the path you specify.
+
+You can specify extra command-line arguments to be used every time
+'rails new' runs in the .railsrc configuration file in your home directory.
+
+Note that the arguments specified in the .railsrc file don't affect the
+defaults values shown above in this help message.
+
+Example:
+rails new ~/Code/Ruby/weblog
+
+This generates a skeletal Rails installation in ~/Code/Ruby/weblog.
+See the README in the newly created application to get going.
+Rubis:) cd sample_app
+Rubis:) git remote add origin https://github.com/<username>/sample_app.git
+-bash: username: No such file or directory
+Rubis:) heroku create
+Creating still-sands-2374... done, stack is cedar
+http://still-sands-2374.herokuapp.com/ | git@heroku.com:still-sands-2374.git
+Rubis:) git push heroku master
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+Rubis:) heroku run rake db:migrate
+Running `rake db:migrate` attached to terminal... up, run.9356
+rake aborted!
+No Rakefile found (looking for: rakefile, Rakefile, rakefile.rb, Rakefile.rb)
+/usr/local/lib/ruby/1.9.1/rake.rb:2367:in `raw_load_rakefile'
+/usr/local/lib/ruby/1.9.1/rake.rb:2007:in `block in load_rakefile'
+/usr/local/lib/ruby/1.9.1/rake.rb:2058:in `standard_exception_handling'
+/usr/local/lib/ruby/1.9.1/rake.rb:2006:in `load_rakefile'
+/usr/local/lib/ruby/1.9.1/rake.rb:1991:in `run'
+/usr/local/bin/rake:31:in `<main>'
+Rubis:) subl .
+-bash: subl: command not found
+Rubis:) rails generate controller StaticPages home help --no-test-framework
+create  app/controllers/static_pages_controller.rb
+route  get "static_pages/help"
+route  get "static_pages/home"
+invoke  erb
+create    app/views/static_pages
+create    app/views/static_pages/home.html.erb
+create    app/views/static_pages/help.html.erb
+invoke  helper
+create    app/helpers/static_pages_helper.rb
+invoke  assets
+invoke    coffee
+create      app/assets/javascripts/static_pages.js.coffee
+invoke    scss
+create      app/assets/stylesheets/static_pages.css.scss
+Rubis:)
+Rubis:) rails generate integration_test static_pages
+Rubis:)
